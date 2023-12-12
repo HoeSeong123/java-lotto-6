@@ -22,12 +22,16 @@ public class LottoController {
 
         OutputView.printPurchaseLotto(purchaseLotto);
 
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
+        List<Integer> winningNumbers = readWinningNumbers();
         System.out.println(winningNumbers);
     }
 
     private int readPurchaseAmount() {
         return readWithRetry(InputView::readPurchaseAmount);
+    }
+
+    private List<Integer> readWinningNumbers() {
+        return readWithRetry(InputView::readWinningNumbers);
     }
 
     private <T> T readWithRetry(Supplier<T> supplier) {
