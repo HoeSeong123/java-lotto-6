@@ -19,6 +19,8 @@ public class LottoController {
         for (int i = 0; i < purchaseQuantity; i++) {
             purchaseLotto.add(lottoGenerator.createLotto());
         }
+
+        OutputView.printPurchaseLotto(purchaseLotto);
     }
 
     private int readPurchaseAmount() {
