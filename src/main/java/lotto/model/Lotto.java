@@ -2,22 +2,27 @@ package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.util.validator.LottoValidator;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
     }
 
-    public List<Integer> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         Collections.sort(numbers);
         return numbers;
     }
 
     public boolean contains(LottoNumber bonusNumber) {
-        return numbers.contains(bonusNumber.bonusNumber());
+        return numbers.contains(bonusNumber.number());
     }
+
+
 }

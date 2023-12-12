@@ -17,4 +17,8 @@ public class WinningLotto {
             throw new IllegalArgumentException(INVALID_IS_DUPLICATE.getMessage());
         }
     }
+
+//    public void checkResult(Lotto purchaseLotto) {
+//        int correctCount = winningNumbers.compare(purchaseLotto);
+//    }
 }
