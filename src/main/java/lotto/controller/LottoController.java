@@ -17,15 +17,16 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         int purchaseQuantity = purchaseAmount.getPurchaseQuantity();
-        List<Lotto> purchaseLotto = new ArrayList<>();
+        List<Lotto> purchaseLottos = new ArrayList<>();
         LottoGenerator lottoGenerator = new LottoGenerator(new RandomNumbersGenerator());
         for (int i = 0; i < purchaseQuantity; i++) {
-            purchaseLotto.add(lottoGenerator.createLotto());
+            purchaseLottos.add(lottoGenerator.createLotto());
         }
 
-        OutputView.printPurchaseLotto(purchaseLotto);
+        OutputView.printPurchaseLotto(purchaseLottos);
 
         WinningLotto winningLotto = readWinningLotto();
+
     }
 
     private PurchaseAmount readPurchaseAmount() {

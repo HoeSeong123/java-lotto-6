@@ -18,7 +18,8 @@ public class WinningLotto {
         }
     }
 
-//    public void checkResult(Lotto purchaseLotto) {
-//        int correctCount = winningNumbers.compare(purchaseLotto);
-//    }
+    public void checkResult(Lotto purchaseLotto) {
+        int correctCount = winningNumbers.compare(purchaseLotto);
+        boolean correctBonusNumber = purchaseLotto.contains(bonusNumber);
+    }
 }

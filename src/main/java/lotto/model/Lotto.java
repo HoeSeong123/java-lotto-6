@@ -25,4 +25,9 @@ public class Lotto {
     }
 
 
+    public int compare(Lotto purchaseLotto) {
+        return (int) this.numbers.stream()
+                .filter(number -> purchaseLotto.getNumbers().contains(number))
+                .count();
+    }
 }
