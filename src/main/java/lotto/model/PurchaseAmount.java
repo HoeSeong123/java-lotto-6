@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.constants.GameConstants.MINIMUM_PAYMENT;
+
 import lotto.util.validator.PurchaseAmountValidator;
 
 public record PurchaseAmount(int purchaseAmount) {
@@ -8,6 +10,6 @@ public record PurchaseAmount(int purchaseAmount) {
     }
 
     public int getPurchaseQuantity() {
-        return purchaseAmount / 1_000;
+        return purchaseAmount / MINIMUM_PAYMENT.get();
     }
 }

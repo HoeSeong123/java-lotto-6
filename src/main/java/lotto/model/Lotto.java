@@ -24,7 +24,6 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-
     public int compare(Lotto myLotto) {
         return (int) this.numbers.stream()
                 .filter(number -> myLotto.getNumbers().contains(number))

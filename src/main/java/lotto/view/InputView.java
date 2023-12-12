@@ -6,11 +6,12 @@ import static lotto.util.message.GlobalMessage.NEW_LINE;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.util.Util;
 
 public class InputView {
     public static int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
+        String input = Util.removeSpace(Console.readLine());
         validateIsNumeric(input);
 
         return Integer.parseInt(input);
@@ -18,19 +19,21 @@ public class InputView {
 
     public static List<Integer> readWinningNumbers() {
         System.out.println(NEW_LINE.get() + "당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        String input = Util.removeSpace(Console.readLine());
         List<String> numbers = Arrays.stream(input.split(",")).toList();
+
         for (String number : numbers) {
             validateIsNumeric(number);
         }
-        return Arrays.stream(input.split(","))
+
+        return numbers.stream()
                 .map(Integer::parseInt)
                 .toList();
     }
 
     public static int readBonusNumber() {
         System.out.println(NEW_LINE.get() + "보너스 번호를 입력해 주세요");
-        String input = Console.readLine();
+        String input = Util.removeSpace(Console.readLine());
         validateIsNumeric(input);
 
         return Integer.parseInt(input);

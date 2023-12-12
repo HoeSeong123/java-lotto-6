@@ -1,5 +1,8 @@
 package lotto.util.validator;
 
+import static lotto.util.constants.GameConstants.LOTTO_SIZE;
+import static lotto.util.constants.GameConstants.MAX_NUMBER;
+import static lotto.util.constants.GameConstants.MIN_NUMBER;
 import static lotto.util.message.ExceptionMessage.INVALID_IS_DUPLICATE;
 import static lotto.util.message.ExceptionMessage.INVALID_NOT_AVAILABLE_SIZE;
 import static lotto.util.message.ExceptionMessage.INVALID_OUT_OF_RANGE;
@@ -27,13 +30,13 @@ public class LottoValidator {
     }
 
     private static void validateIsInRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER.get() || number > MAX_NUMBER.get()) {
             throw new IllegalArgumentException(INVALID_OUT_OF_RANGE.getMessage());
         }
     }
 
     private static void validateIsAvailableSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.get()) {
             throw new IllegalArgumentException(INVALID_NOT_AVAILABLE_SIZE.getMessage());
         }
     }
