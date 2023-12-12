@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.util.message.GlobalMessage.NEW_LINE;
+
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -12,9 +14,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printPurchaseLotto(List<Lotto> purchaseLotto) {
-        System.out.println(purchaseLotto.size() + "개를 구매했습니다.");
-        for (Lotto lotto : purchaseLotto) {
+    public static void printUserLottos(List<Lotto> userLotto) {
+        System.out.println(NEW_LINE.get() + userLotto.size() + "개를 구매했습니다.");
+        for (Lotto lotto : userLotto) {
             System.out.println(lotto.getNumbers().stream()
                     .map(LottoNumber::number)
                     .toList());
@@ -22,6 +24,8 @@ public class OutputView {
     }
 
     public static void printResult(Result result) {
+        System.out.println(NEW_LINE.get() + "당첨 통계");
+        System.out.println("---");
         printWinningDetails(result.getRankResult());
         printPrizeRate(result.getPrizeRate());
     }

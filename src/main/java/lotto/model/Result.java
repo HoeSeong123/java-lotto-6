@@ -18,7 +18,7 @@ public class Result {
             totalPrize += (long) rankResult.get(rank) * rank.getPrize();
         }
 
-        return (double) totalPrize / purchaseAmount;
+        return (double) totalPrize / purchaseAmount * 100;
     }
 
     public Map<Rank, Integer> getRankResult() {

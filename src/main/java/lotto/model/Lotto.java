@@ -25,9 +25,9 @@ public class Lotto {
     }
 
 
-    public int compare(Lotto purchaseLotto) {
+    public int compare(Lotto myLotto) {
         return (int) this.numbers.stream()
-                .filter(number -> purchaseLotto.getNumbers().contains(number))
+                .filter(number -> myLotto.getNumbers().contains(number))
                 .count();
     }
 }

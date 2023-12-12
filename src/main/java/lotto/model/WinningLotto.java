@@ -34,9 +34,9 @@ public class WinningLotto {
         return result;
     }
 
-    private Rank checkResult(Lotto purchaseLotto) {
-        int correctCount = winningNumbers.compare(purchaseLotto);
-        boolean correctBonusNumber = purchaseLotto.contains(bonusNumber);
+    private Rank checkResult(Lotto userLotto) {
+        int correctCount = winningNumbers.compare(userLotto);
+        boolean correctBonusNumber = userLotto.contains(bonusNumber);
         return Rank.findRank(correctCount, correctBonusNumber);
     }
 }

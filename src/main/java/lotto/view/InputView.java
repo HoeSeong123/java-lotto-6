@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.util.message.ExceptionMessage.INVALID_NOT_NUMERIC;
+import static lotto.util.message.GlobalMessage.NEW_LINE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(NEW_LINE.get() + "당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> numbers = Arrays.stream(input.split(",")).toList();
         for (String number : numbers) {
@@ -28,7 +29,7 @@ public class InputView {
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요");
+        System.out.println(NEW_LINE.get() + "보너스 번호를 입력해 주세요");
         String input = Console.readLine();
         validateIsNumeric(input);
 
@@ -40,4 +41,5 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_NOT_NUMERIC.getMessage());
         }
     }
+
 }

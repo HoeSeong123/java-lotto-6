@@ -18,19 +18,20 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         int purchaseQuantity = purchaseAmount.getPurchaseQuantity();
-        List<Lotto> purchaseLottos = new ArrayList<>();
+        List<Lotto> userLottos = new ArrayList<>();
         LottoGenerator lottoGenerator = new LottoGenerator(new RandomNumbersGenerator());
         for (int i = 0; i < purchaseQuantity; i++) {
-            purchaseLottos.add(lottoGenerator.createLotto());
+            userLottos.add(lottoGenerator.createLotto());
         }
 
-        OutputView.printPurchaseLotto(purchaseLottos);
+        OutputView.printUserLottos(userLottos);
 
         WinningLotto winningLotto = readWinningLotto();
-        Result result = new Result(winningLotto.checkTotalResult(purchaseLottos), purchaseAmount);
+        Result result = new Result(winningLotto.checkTotalResult(userLottos), purchaseAmount);
 
         OutputView.printResult(result);
     }
+
 
     private PurchaseAmount readPurchaseAmount() {
         return readWithRetry(() ->
