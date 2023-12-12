@@ -1,22 +1,13 @@
 package lotto.util.validator;
 
 import static lotto.util.message.ExceptionMessage.INVALID_LESS_THAN_MINIMUM_PAYMENT;
-import static lotto.util.message.ExceptionMessage.INVALID_NOT_NUMERIC;
 import static lotto.util.message.ExceptionMessage.INVALID_NOT_UNIT_OF_PAYMENT;
 
 public class PurchaseAmountValidator {
 
-    public static void validate(String input) {
-        validateIsNumeric(input);
-        int number = Integer.parseInt(input);
-        validateOverMinimumPayment(number);
-        validateIsUnitOfMinimumPayment(number);
-    }
-
-    private static void validateIsNumeric(String input) {
-        if (!input.chars().allMatch(Character::isDigit) || input.isBlank()) {
-            throw new IllegalArgumentException(INVALID_NOT_NUMERIC.getMessage());
-        }
+    public static void validate(int input) {
+        validateOverMinimumPayment(input);
+        validateIsUnitOfMinimumPayment(input);
     }
 
     private static void validateOverMinimumPayment(int number) {
@@ -30,6 +21,4 @@ public class PurchaseAmountValidator {
             throw new IllegalArgumentException(INVALID_NOT_UNIT_OF_PAYMENT.getMessage());
         }
     }
-
-
 }

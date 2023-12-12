@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,8 +14,8 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        int purchaseAmount = readPurchaseAmount();
-        int purchaseQuantity = purchaseAmount / 1_000;
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
+        int purchaseQuantity = purchaseAmount.getPurchaseQuantity();
         List<Lotto> purchaseLotto = new ArrayList<>();
         LottoGenerator lottoGenerator = new LottoGenerator(new RandomNumbersGenerator());
         for (int i = 0; i < purchaseQuantity; i++) {
@@ -22,17 +24,20 @@ public class LottoController {
 
         OutputView.printPurchaseLotto(purchaseLotto);
 
-        List<Integer> winningNumbers = readWinningNumbers();
-        System.out.println(winningNumbers);
+        WinningNumbers winningNumbers = readWinningNumbers();
+//        int bonusNumber = readBonusNumber(winningNumbers);
     }
 
-    private int readPurchaseAmount() {
-        return readWithRetry(InputView::readPurchaseAmount);
+    private PurchaseAmount readPurchaseAmount() {
+        return readWithRetry(() ->
+                new PurchaseAmount(InputView.readPurchaseAmount()));
     }
 
-    private List<Integer> readWinningNumbers() {
-        return readWithRetry(InputView::readWinningNumbers);
+    private WinningNumbers readWinningNumbers() {
+        return readWithRetry(() ->
+                new WinningNumbers(InputView.readWinningNumbers()));
     }
+
 
     private <T> T readWithRetry(Supplier<T> supplier) {
         while (true) {
