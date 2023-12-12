@@ -21,6 +21,9 @@ public class LottoController {
         }
 
         OutputView.printPurchaseLotto(purchaseLotto);
+
+        List<Integer> winningNumbers = InputView.readWinningNumbers();
+        System.out.println(winningNumbers);
     }
 
     private int readPurchaseAmount() {
