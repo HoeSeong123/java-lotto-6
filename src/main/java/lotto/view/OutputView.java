@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Rank;
+import lotto.model.Result;
 
 public class OutputView {
     public static void printExceptionMessage(String message) {
@@ -20,7 +21,12 @@ public class OutputView {
         }
     }
 
-    public static void printResult(Map<Rank, Integer> result) {
+    public static void printResult(Result result) {
+        printWinningDetails(result.getRankResult());
+        printPrizeRate(result.getPrizeRate());
+    }
+
+    private static void printWinningDetails(Map<Rank, Integer> rankResult) {
         List<Rank> ranks = Rank.valuesByRank();
 
         for (Rank rank : ranks) {
@@ -29,7 +35,11 @@ public class OutputView {
                 continue;
             }
 
-            System.out.println(message + " - " + result.getOrDefault(rank, 0) + "개");
+            System.out.println(message + " - " + rankResult.getOrDefault(rank, 0) + "개");
         }
+    }
+
+    private static void printPrizeRate(double prizeRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", prizeRate);
     }
 }
