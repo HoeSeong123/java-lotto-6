@@ -2,11 +2,13 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoNumber;
 import lotto.model.PurchaseAmount;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
@@ -26,7 +28,9 @@ public class LottoController {
         OutputView.printPurchaseLotto(purchaseLottos);
 
         WinningLotto winningLotto = readWinningLotto();
+        Map<Rank, Integer> result = winningLotto.checkTotalResult(purchaseLottos);
 
+        OutputView.printResult(result);
     }
 
     private PurchaseAmount readPurchaseAmount() {

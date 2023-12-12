@@ -2,6 +2,10 @@ package lotto.model;
 
 import static lotto.util.message.ExceptionMessage.INVALID_IS_DUPLICATE;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class WinningLotto {
     private Lotto winningNumbers;
     private LottoNumber bonusNumber;
@@ -18,8 +22,21 @@ public class WinningLotto {
         }
     }
 
-    public void checkResult(Lotto purchaseLotto) {
+    public Map<Rank, Integer> checkTotalResult(List<Lotto> lottos) {
+        Map<Rank, Integer> result = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = checkResult(lotto);
+
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+
+        return result;
+    }
+
+    private Rank checkResult(Lotto purchaseLotto) {
         int correctCount = winningNumbers.compare(purchaseLotto);
         boolean correctBonusNumber = purchaseLotto.contains(bonusNumber);
+        return Rank.findRank(correctCount, correctBonusNumber);
     }
 }
