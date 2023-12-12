@@ -7,7 +7,7 @@ import static lotto.util.message.ExceptionMessage.INVALID_OUT_OF_RANGE;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinningNumbersValidator {
+public class LottoValidator {
     public static void validate(List<Integer> numbers) {
         for (int number : numbers) {
             validateIsInRange(number);

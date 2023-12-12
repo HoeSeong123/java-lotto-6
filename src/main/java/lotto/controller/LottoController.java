@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoNumber;
 import lotto.model.PurchaseAmount;
-import lotto.model.WinningNumbers;
+import lotto.model.WinningLotto;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,8 +25,7 @@ public class LottoController {
 
         OutputView.printPurchaseLotto(purchaseLotto);
 
-        WinningNumbers winningNumbers = readWinningNumbers();
-//        int bonusNumber = readBonusNumber(winningNumbers);
+        WinningLotto winningLotto = readWinningLotto();
     }
 
     private PurchaseAmount readPurchaseAmount() {
@@ -33,11 +33,25 @@ public class LottoController {
                 new PurchaseAmount(InputView.readPurchaseAmount()));
     }
 
-    private WinningNumbers readWinningNumbers() {
+    private WinningLotto readWinningLotto() {
+        Lotto winningNumbers = readWinningNumbers();
+
         return readWithRetry(() ->
-                new WinningNumbers(InputView.readWinningNumbers()));
+                new WinningLotto(
+                        winningNumbers,
+                        readBonusNumber()
+                ));
     }
 
+    private Lotto readWinningNumbers() {
+        return readWithRetry(() ->
+                new Lotto(InputView.readWinningNumbers()));
+    }
+
+    private LottoNumber readBonusNumber() {
+        return readWithRetry(() ->
+                new LottoNumber(InputView.readBonusNumber()));
+    }
 
     private <T> T readWithRetry(Supplier<T> supplier) {
         while (true) {
